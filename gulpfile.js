@@ -72,6 +72,8 @@ gulp.task('compile-js', ['clean-js'], function(done) {
                 if (/\.jade$/.test(file)) {
                     this.queue(data);
                 } else {
+                    // Remove certain requires
+                    data = data.replace(/Backbone\s+=\s+require\s?\(?'backbone'\)?/, '');
                     this.queue(coffee.compile(data));
                 }
                 this.queue(null);
