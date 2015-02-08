@@ -45,7 +45,7 @@ class ApplicationModel extends Backbone.Model
         {instance} = @getComponent component
         @set
             activeComponent: component
-            title: component
+            title: Util.capitalize component
 
     handleActiveComponentChange: ->
         previousComponentID = @previous 'activeComponent'
