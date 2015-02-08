@@ -116,18 +116,16 @@ gulp.task('watch', ['compile'], function() {
 
     // Watch our scripts, and when they change run browserify
     gulp.watch([
-        'apps/**/client.coffee',
-        'apps/**/client/*.coffee',
-        'apps/**/*.styl',
-        'apps/**/*.jade',
         'assets/**/*.coffee',
-        'assets/**/*.styl',
-        'components/**/*.coffee',
         'collections/**/*.coffee',
-        'components/**/*.styl',
+        'components/**/*.coffee',
         'components/**/*.jade',
         'models/**/*.coffee'
-        ], ['compile']);
+        ], ['compile-js']);
+    gulp.watch([
+        'assets/**/*.styl',
+        'components/**/*.styl',
+        ], ['compile-css']);
 
     // Watch bundled assets
     gulp.watch('public/assets/bundle.*').on('change', refresh.changed);
