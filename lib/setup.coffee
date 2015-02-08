@@ -20,7 +20,7 @@ module.exports = (app) ->
         ENV: process.env.NODE_ENV
         HOST: process.env.NODE_HOST
         PORT: process.env.NODE_PORT
-    sd.APP_URL = "http://#{sd.HOST}#{sd.port}"
+    sd.APP_URL = "http://#{sd.HOST}:#{sd.PORT}"
     sd.API_URL = sd.APP_URL
 
     # Override Backbone to use server-side sync
@@ -34,8 +34,10 @@ module.exports = (app) ->
     app.use logger if inProduction then 'prod' else 'dev'
     app.use livereload port: process.env.NODE_LIVERELOAD_PORT if inDevelopment
 
-    # include apps
+    # Mount apps
+    app.use require '../assets/home'
 
-    # setup static
+    # Mount static middleware for sub apps, components, and project-wide
+    app.use express.static path.resolve(__dirname, '../public')
 
     app.use require './error-handler'

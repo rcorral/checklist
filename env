@@ -1,4 +1,4 @@
-exports DEBUG=server
+exports DEBUG=debug,server,error
 exports NODE_ENV=development
 exports NODE_HOST=localhost
 exports NODE_PORT=8000
