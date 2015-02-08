@@ -7,9 +7,10 @@
 Backbone = require 'backbone'
 express = require 'express'
 inDevelopment = process.env.NODE_ENV is 'development'
-inProduction = sd.ENV is 'production'
+inProduction = process.env.NODE_ENV is 'production'
 livereload = require 'connect-livereload' if inDevelopment
 logger = require 'morgan'
+path = require 'path'
 sharify = require 'sharify'
 
 module.exports = (app) ->
