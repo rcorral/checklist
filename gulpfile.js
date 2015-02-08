@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     debugError = require('debug')('error'),
     env = require('node-env-file'),
     es = require('event-stream'),
+    jadeify = require('jadeify'),
     order = require('gulp-order'),
     path = require('path'),
     refresh = require('gulp-livereload'),
@@ -59,13 +60,20 @@ gulp.task('compile-js', ['clean-js'], function(done) {
     debug('compile-js');
     var browserified = transform(function(filename) {
         var b = browserify(filename);
+        b.transform(jadeify);
         b.transform(function (file) {
             var data = '';
             return through(write, end);
 
             function write (buf) { data += buf }
             function end () {
-                this.queue(coffee.compile(data));
+                // Skip parsing jade requires
+                // they've already gone through jadeify
+                if (/\.jade$/.test(file)) {
+                    this.queue(data);
+                } else {
+                    this.queue(coffee.compile(data));
+                }
                 this.queue(null);
             }
         });
@@ -111,11 +119,13 @@ gulp.task('watch', ['compile'], function() {
         'apps/**/client.coffee',
         'apps/**/client/*.coffee',
         'apps/**/*.styl',
+        'apps/**/*.jade',
         'assets/**/*.coffee',
         'assets/**/*.styl',
         'components/**/*.coffee',
         'collections/**/*.coffee',
         'components/**/*.styl',
+        'components/**/*.jade',
         'models/**/*.coffee'
         ], ['compile']);
 
