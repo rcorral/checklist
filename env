@@ -1,0 +1,2 @@
+exports DEBUG=server
+exports NODE_PORT=8000
