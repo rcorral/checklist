@@ -6,13 +6,34 @@
 
 Backbone = require 'backbone'
 express = require 'express'
+inDevelopment = process.env.NODE_ENV is 'development'
+inProduction = sd.ENV is 'production'
+livereload = require 'connect-livereload' if inDevelopment
+logger = require 'morgan'
+sharify = require 'sharify'
 
 module.exports = (app) ->
 
-    # setup sharify data
+    # Inject some configuration & constant data into sharify
+    sd = sharify.data =
+        ENV: process.env.NODE_ENV
+        HOST: process.env.NODE_HOST
+        PORT: process.env.NODE_PORT
+    sd.APP_URL = "http://#{sd.HOST}#{sd.port}"
 
-    # setup express
+    # Override Backbone to use server-side sync
+    Backbone.sync = require 'backbone-super-sync'
+
+    # Settings
+    app.enable 'case sensitive routing'
+
+    # #use
+    app.use sharify
+    app.use logger if inProduction then 'prod' else 'dev'
+    app.use livereload port: process.env.NODE_LIVERELOAD_PORT if inDevelopment
 
     # include apps
 
     # setup static
+
+    # error handler
