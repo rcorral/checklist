@@ -1,0 +1,28 @@
+@require './mixins'
+@require './overrides'
+
+html, body
+    height: 100%
+
+body
+    font-family: 'Open Sans', sans-serif
+    -webkit-font-smoothing: antialiased
+
+::selection
+    background-color: rgba(163, 100, 237, 0.38)
+
+.components-container
+    .main
+        margin: 25px 0 0
+
+@media (max-width: 979px)
+    .main
+        width: 100%
+
+@media (max-width: 480px)
+    h1
+        font-size: 22px
+
+@media (max-width: 768px)
+    body
+        padding-top: 0
