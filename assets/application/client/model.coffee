@@ -1,4 +1,5 @@
 Checklists = require '../../../collections/checklists.coffee'
+Checklist = require '../../../models/checklist.coffee'
 sd = require('sharify').data
 Util = require '../../../components/Util/index.coffee'
 
@@ -10,11 +11,18 @@ class ApplicationModel extends Backbone.Model
         router = @get 'router'
         @listenTo router, 'navigate:home', @handleComponent
         @listenTo router, 'navigate:checklists', @handleComponent
+        @listenTo router, 'navigate:checklist', @handleChecklist
         @listenTo @, 'change:activeComponent', @handleActiveComponentChange
 
         @registerComponent 'checklists',
             collectionKlass: Checklists
             models: sd.checklists
+
+        @registerComponent 'checklist',
+            modelKlass: Checklist
+            attributes: sd.checklist
+            options:
+                parse: true
 
         @registerComponent 'home',
             modelKlass: Backbone.Model
@@ -52,6 +60,15 @@ class ApplicationModel extends Backbone.Model
         @set
             activeComponent: component
             title: Util.capitalize component
+
+    handleChecklist: (id) ->
+        {instance} = @getComponent 'checklist'
+        fn = =>
+            @set
+                activeComponent: 'checklist'
+                title: instance.get 'title'
+        if id
+            instance.loadChecklist id, success: fn
 
     handleActiveComponentChange: ->
         previousComponentID = @previous 'activeComponent'

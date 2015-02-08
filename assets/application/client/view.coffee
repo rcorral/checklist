@@ -1,6 +1,8 @@
+ChecklistView = require '../../checklist/client/checklist.coffee'
 ChecklistsView = require '../../checklist/client/checklists.coffee'
 HomeView = require '../../home/client.coffee'
 NavbarView = require '../../../components/navbar/client.coffee'
+Util = require '../../../components/Util/index.coffee'
 
 componentViews = {}
 
@@ -15,6 +17,10 @@ class ApplicationView extends Backbone.View
 
         @registerComponent 'checklists',
             klass: ChecklistsView
+            options: {router}
+
+        @registerComponent 'checklist',
+            klass: ChecklistView
             options: {router}
 
         @registerComponent 'home',

@@ -1,0 +1,17 @@
+article.checklist
+    if id
+        h1 #{title}
+    else
+        h1 Create a New List
+        input(type='text' name='title' placeholder='Checklist title')
+
+    ul.list
+        each item in list
+            li.list-item
+                input(type='checkbox', checked=item.done)
+                !{item.title}
+
+        li.list-item
+            input(type='checkbox')
+            input(type='text' placeholder='Add item')
+            button.btn.btn-primary Add
