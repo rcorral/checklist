@@ -11,6 +11,7 @@ class ApplicationView extends Backbone.View
         @$componentsContainer = $ '.components-container'
         @$body = $ 'body'
         @$footer = $ 'footer'
+        @appRendered = false
 
         @registerComponent 'home',
             klass: HomeView
