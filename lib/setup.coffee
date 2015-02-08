@@ -37,4 +37,4 @@ module.exports = (app) ->
 
     # setup static
 
-    # error handler
+    app.use require './error-handler'
