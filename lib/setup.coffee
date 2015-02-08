@@ -21,6 +21,7 @@ module.exports = (app) ->
         HOST: process.env.NODE_HOST
         PORT: process.env.NODE_PORT
     sd.APP_URL = "http://#{sd.HOST}#{sd.port}"
+    sd.API_URL = sd.APP_URL
 
     # Override Backbone to use server-side sync
     Backbone.sync = require 'backbone-super-sync'
