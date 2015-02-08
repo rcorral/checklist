@@ -1,2 +1,3 @@
 # Entry point for all client JS
-alert('it works!');
+application = require './application/client/index.coffee'
+application.init()
