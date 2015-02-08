@@ -3,6 +3,10 @@ jade = require 'jade'
 path = require 'path'
 sd = require('sharify').data
 
+# Pre-compile navbar view
+navbarPath = path.join __dirname, '../../components/navbar/navbar.jade'
+navbarView = jade.compileFile navbarPath
+
 module.exports =
 
     ###
@@ -22,3 +26,4 @@ module.exports =
             appName: ''
             description: 'Checklist single page application'
             title: 'Checklists'
+            navbarView: navbarView _.defaults {}, opts.navbarOpts, {sd}

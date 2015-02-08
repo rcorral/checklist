@@ -19,6 +19,9 @@ html(lang='en')
     - if (!componentClassName) {componentClassName = appName;}
     - var bodyClass = componentClassName + '-component';
     body(class=bodyClass)
+        header
+            != navbarView
+
         .container-fluid.components-container
             main(class='row main')
                 .app-wrapper
