@@ -12,3 +12,6 @@ nav.navbar.navbar-default(role='navigation')
                 - var className = homeActive ? 'active' : ''
                 li(class='#{className}')
                     a.js-route(href='/') Home
+                - var className = checklistsActive || checklistActive ? 'active' : ''
+                li(class='#{className}')
+                    a.js-route(href='/checklists') Checklists

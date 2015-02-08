@@ -1,3 +1,4 @@
+Checklists = require '../../../collections/checklists.coffee'
 sd = require('sharify').data
 Util = require '../../../components/Util/index.coffee'
 
@@ -8,7 +9,12 @@ class ApplicationModel extends Backbone.Model
     initialize: ->
         router = @get 'router'
         @listenTo router, 'navigate:home', @handleComponent
+        @listenTo router, 'navigate:checklists', @handleComponent
         @listenTo @, 'change:activeComponent', @handleActiveComponentChange
+
+        @registerComponent 'checklists',
+            collectionKlass: Checklists
+            models: sd.checklists
 
         @registerComponent 'home',
             modelKlass: Backbone.Model

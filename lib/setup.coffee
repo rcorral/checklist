@@ -36,6 +36,7 @@ module.exports = (app) ->
 
     # Mount apps
     app.use require '../assets/home'
+    app.use require '../assets/checklist'
 
     # Mount static middleware for sub apps, components, and project-wide
     app.use express.static path.resolve(__dirname, '../public')

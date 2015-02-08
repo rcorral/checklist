@@ -1,0 +1,7 @@
+h1 Checklists
+
+each checklist in checklists
+    article.checklist
+        h2
+            a.js-view-checklist(href='#{checklist.url}', data-id='#{checklist.id}')
+                | #{checklist.title}
