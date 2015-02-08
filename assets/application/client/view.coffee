@@ -52,6 +52,11 @@ class ApplicationView extends Backbone.View
         component = componentViews[id]
 
         unless component.instance
+            # Clears out server rendered app
+            unless @appRendered
+                @$el.empty()
+                @appRendered = true
+
             _.defaults component,
                 options: {}
             {instance, type} = @model.getComponent id
