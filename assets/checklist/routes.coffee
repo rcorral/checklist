@@ -27,8 +27,7 @@ module.exports.checklists = (req, res) ->
                 navbarOpts:
                     checklistsActive: true
         error: ->
-            # maybe this should send user to 404?
-            res.redirect '/checklists'
+            res.redirect '/404'
  
 # Loads checklist
 module.exports.checklist = (req, res) ->
@@ -43,7 +42,7 @@ module.exports.checklist = (req, res) ->
                 navbarOpts:
                     checklistActive: true
         error: ->
-            res.redirect '/checklists'
+            res.redirect '/404'
 
 # Saves checklist
 module.exports.checklistStore = (req, res) ->

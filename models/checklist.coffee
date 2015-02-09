@@ -12,7 +12,7 @@ module.exports = class Checklist extends Backbone.Model
 
     urlRoot: -> "#{sd.API_URL}/api/checklists"
 
-    frontEndUrl: -> "/checklist/#{@id}"
+    frontEndUrl: -> "/checklists/#{@id}"
 
     toJSON: ->
         json = super
