@@ -18,7 +18,7 @@ Use in development
 ------------------
 
 1. Copy `env` to `.env`
-2. Start server `$ gulp auto-reload`
+2. Start server `$ gulp`
 3. Visit [http://localhost:8000/](http://localhost:8000/)
 
 Test
