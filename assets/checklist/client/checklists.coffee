@@ -2,7 +2,7 @@ Util = require '../../../components/Util/index.coffee'
 
 module.exports = class ChecklistsView extends Backbone.View
 
-    className: 'app-checklists'
+    className: 'app-checklists checklist'
 
     events:
         'click .js-view-checklist': 'handleViewChecklist'

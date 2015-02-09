@@ -119,6 +119,7 @@ gulp.task('watch', ['compile'], function() {
     // Watch our scripts, and when they change run browserify
     gulp.watch([
         'assets/**/*.coffee',
+        'assets/**/*.jade',
         'collections/**/*.coffee',
         'components/**/*.coffee',
         'components/**/*.jade',

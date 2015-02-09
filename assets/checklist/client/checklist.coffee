@@ -2,7 +2,7 @@ Backbone = require 'backbone'
 
 module.exports = class ChecklistView extends Backbone.View
 
-    className: 'app-checklist'
+    className: 'app-checklist checklist'
 
     componentClassName: 'checklist'
 
