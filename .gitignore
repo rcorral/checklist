@@ -2,3 +2,5 @@
 .env
 node_modules
 /assets/checklist/data/*.json
+
+/public/assets/
