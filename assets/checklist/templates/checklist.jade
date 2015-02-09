@@ -6,10 +6,14 @@ article.checklist.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col
         input.js-checklist-title.list-title(type='text' name='title' placeholder='Checklist title' value='#{title}')
 
     ul.list
-        each item in list
+        each item, index in list
             li.list-item
-                input.item-checkbox(type='checkbox', checked=item.done)
-                span.item-title #{item.title}
+                input.item-checkbox.js-done-toggle(
+                    type='checkbox'
+                    id='done-toggle-#{index}'
+                    data-index='#{index}'
+                    checked=item.done)
+                label.item-title(for='done-toggle-#{index}') #{item.title}
 
         li.list-item
             input.item-checkbox.js-new-item-done(type='checkbox')

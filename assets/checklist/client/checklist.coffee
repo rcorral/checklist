@@ -9,12 +9,16 @@ module.exports = class ChecklistView extends Backbone.View
     events:
         'click .js-save-checklist': 'handleChecklistSave'
         'keydown .js-new-item-title': 'handleKeydownAdd'
+        'change .js-done-toggle': 'handleDoneToggle'
         'click .js-add-item': 'handleItemAdd'
 
     initialize: (options) ->
         @router = options.router
         @constructor.template = require '../templates/checklist.jade'
         @listenTo @model, 'sync change:list', @render
+
+    handleDoneToggle: (event) ->
+        @model.setDone event.currentTarget.dataset.index, event.currentTarget.checked
 
     handleChecklistSave: ->
         title = @$el.find('.js-checklist-title').val()
