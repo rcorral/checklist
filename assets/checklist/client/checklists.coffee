@@ -6,6 +6,7 @@ module.exports = class ChecklistsView extends Backbone.View
 
     events:
         'click .js-view-checklist': 'handleViewChecklist'
+        'click .js-create-checklist': 'handleCreateChecklist'
 
     initialize: (options) ->
         @router = options.router
@@ -21,3 +22,7 @@ module.exports = class ChecklistsView extends Backbone.View
         checklist = @collection.get id
         @router.navigate checklist.frontEndUrl(), trigger: true
         Util.scrollToTop()
+
+    handleCreateChecklist: ->
+        @router.navigate 'checklists/create', trigger: true
+        false
