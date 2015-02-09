@@ -32,7 +32,6 @@ module.exports = class ChecklistView extends Backbone.View
         @handleItemAdd() if event.which is 13 # enter
 
     handleItemAdd: ->
-        checklistTitle = @$el.find('.js-checklist-title').val()
         title = @$el.find('.js-new-item-title').val()
         done = @$el.find('.js-new-item-done').is(':checked')
 
@@ -40,8 +39,12 @@ module.exports = class ChecklistView extends Backbone.View
             return alert 'Please add a title to add a checklist item.'
 
         # Set title so that it's not lost on render
-        @model.setTitle checklistTitle
+        if @model.isNew()
+            checklistTitle = @$el.find('.js-checklist-title').val()
+            @model.setTitle checklistTitle
+
         @model.addItem {title, done}
+
         setTimeout =>
             @$el.find('.js-new-item-title').focus()
         , 100

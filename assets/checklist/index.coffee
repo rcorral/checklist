@@ -13,3 +13,4 @@ app.get '/api/checklists', routesAPI.checklists
 app.get '/api/checklists/:id', routesAPI.checklist
 app.post '/api/checklists', routes.checklistStore
 app.post '/api/checklists/:id', routes.checklistStore
+app.put '/api/checklists/:id', routes.checklistStore

@@ -19,10 +19,16 @@ module.exports = class Checklist extends Backbone.Model
         json.url = @frontEndUrl()
         json
 
+    reset: ->
+        @set Checklist::defaults
+
     addItem: (newItem) ->
         list = _.clone @get 'list'
         list.push newItem
         @set {list}
+
+        # Keep in sync with server
+        @save silent: true unless @isNew()
 
     setTitle: (title) ->
         @set {title}

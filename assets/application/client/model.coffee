@@ -70,6 +70,7 @@ class ApplicationModel extends Backbone.Model
         if id
             instance.loadChecklist id, success: fn
         else
+            instance.reset()
             fn()
 
     handleActiveComponentChange: ->
