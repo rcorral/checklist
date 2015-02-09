@@ -62,5 +62,5 @@ module.exports.checklistStore = (req, res) ->
         # Could be worth storing this in UTC
         createdAt: req.body.createdAt or (new Date).getTime()
 
-    storage.store id, JSON.stringify(data), ->
+    storage.store id, data, ->
         res.send data
