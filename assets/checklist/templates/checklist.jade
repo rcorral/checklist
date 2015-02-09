@@ -3,7 +3,7 @@ article.checklist
         h1 #{title}
     else
         h1 Create a New List
-        input(type='text' name='title' placeholder='Checklist title')
+        input.js-checklist-title(type='text' name='title' placeholder='Checklist title' value='#{title}')
 
     ul.list
         each item in list
@@ -12,6 +12,10 @@ article.checklist
                 !{item.title}
 
         li.list-item
-            input(type='checkbox')
-            input(type='text' placeholder='Add item')
-            button.btn.btn-primary Add
+            input.js-new-item-done(type='checkbox')
+            input.js-new-item-title(type='text' placeholder='Add item')
+            button.btn.js-add-item Add
+
+    unless id
+        button.btn.btn-primary.js-save-checklist Save
+

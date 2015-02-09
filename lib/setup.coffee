@@ -5,6 +5,7 @@
 #
 
 Backbone = require 'backbone'
+bodyParser = require 'body-parser'
 express = require 'express'
 inDevelopment = process.env.NODE_ENV is 'development'
 inProduction = process.env.NODE_ENV is 'production'
@@ -30,6 +31,7 @@ module.exports = (app) ->
     app.enable 'case sensitive routing'
 
     # #use
+    app.use bodyParser.json()
     app.use sharify
     app.use logger if inProduction then 'prod' else 'dev'
     app.use livereload port: process.env.NODE_LIVERELOAD_PORT if inDevelopment

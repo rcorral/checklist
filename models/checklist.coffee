@@ -1,3 +1,4 @@
+_ = require 'underscore'
 Backbone = require 'backbone'
 sd = require('sharify').data
 
@@ -5,8 +6,9 @@ module.exports = class Checklist extends Backbone.Model
 
     defaults:
         id: null
-        title: null
+        title: ''
         list: []
+        createdAt: null
 
     urlRoot: -> "#{sd.API_URL}/api/checklists"
 
@@ -16,6 +18,14 @@ module.exports = class Checklist extends Backbone.Model
         json = super
         json.url = @frontEndUrl()
         json
+
+    addItem: (newItem) ->
+        list = _.clone @get 'list'
+        list.push newItem
+        @set {list}
+
+    setTitle: (title) ->
+        @set {title}
 
     loadChecklist: (id, options={}) ->
         @clear silent: true
