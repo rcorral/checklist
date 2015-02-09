@@ -17,7 +17,7 @@ class HomeView extends Backbone.View
     ###
 
     handleCreateChecklist: ->
-        @router.navigate 'checklists', trigger: true
+        @router.navigate 'checklists/create', trigger: true
         false
 
 module.exports = HomeView

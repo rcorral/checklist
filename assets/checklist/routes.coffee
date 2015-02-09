@@ -31,18 +31,25 @@ module.exports.checklists = (req, res) ->
  
 # Loads checklist
 module.exports.checklist = (req, res) ->
-    checklist = new Checklist id: req.params.id
-    checklist.fetch
-        success: ->
-            res.locals.sd.checklist = checklist.toJSON()
-            template.render req, res,
-                appName: 'checklist'
-                appView: checklistView res.locals.sd.checklist
-                componentClassName: ChecklistView::componentClassName
-                navbarOpts:
-                    checklistActive: true
-        error: ->
-            res.redirect '/404'
+    responseFn = ->
+        template.render req, res,
+            appName: 'checklist'
+            appView: checklistView res.locals.sd.checklist
+            componentClassName: ChecklistView::componentClassName
+            navbarOpts:
+                checklistActive: true
+
+    if req.params.id is 'create'
+        res.locals.sd.checklist = Checklist::defaults
+        responseFn()
+    else
+        checklist = new Checklist id: req.params.id
+        checklist.fetch
+            success: ->
+                res.locals.sd.checklist = checklist.toJSON()
+                responseFn()
+            error: ->
+                res.redirect '/404'
 
 # Saves checklist
 module.exports.checklistStore = (req, res) ->
