@@ -11,3 +11,6 @@ module.exports = class Checklists extends Backbone.Collection
     forTemplate: ->
         checklists: @toJSON()
         sd: sd
+
+    comparator: (a, b) ->
+        b.get('createdAt') - a.get('createdAt')
