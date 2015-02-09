@@ -69,6 +69,8 @@ class ApplicationModel extends Backbone.Model
                 title: instance.get 'title'
         if id
             instance.loadChecklist id, success: fn
+        else
+            fn()
 
     handleActiveComponentChange: ->
         previousComponentID = @previous 'activeComponent'
