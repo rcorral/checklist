@@ -21,6 +21,7 @@
     "morgan": "^1.5.1",
     "node-env-file": "^0.1.4",
     "sharify": "^0.1.6",
+    "sinon": "^1.12.2",
     "uglify-js": "^2.4.16",
     "underscore": "^1.7.0",
     "uuid": "^2.0.1"
