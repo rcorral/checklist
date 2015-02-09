@@ -34,4 +34,4 @@ MIT
 Todo
 ----
 
-Test coverage is low, but I'm working on it.
+Test coverage is low.
