@@ -10,7 +10,7 @@ class ApplicationModel extends Backbone.Model
     initialize: ->
         router = @get 'router'
         @listenTo router, 'navigate:home', @handleComponent
-        @listenTo router, 'navigate:checklists', @handleComponent
+        @listenTo router, 'navigate:checklists', @handleChecklists
         @listenTo router, 'navigate:checklist', @handleChecklist
         @listenTo @, 'change:activeComponent', @handleActiveComponentChange
 
@@ -60,6 +60,11 @@ class ApplicationModel extends Backbone.Model
         @set
             activeComponent: component
             title: Util.capitalize component
+
+    handleChecklists: (id) ->
+        @handleComponent id
+        {instance} = @getComponent id
+        instance.fetch()
 
     handleChecklist: (id) ->
         {instance} = @getComponent 'checklist'
